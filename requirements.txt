@@ -61,4 +61,4 @@ tzdata>=2023.3
 uvicorn<=0.23.2
 wcwidth>=0.2.6
 wordcloud>=1.9.2
-pywin32<=305
+
