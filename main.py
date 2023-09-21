@@ -57,7 +57,7 @@ async def count_reviews(start_date: str, end_date: str):
     return num_users, percentage_recommendation
 
 #6
-@app.get("/entiment_analysis/{año}")
+@app.get("/sentiment_analysis/{año}")
 async def sentiment_analysis(año: int):
     # Filtramos los DataFrames por año
     juegos_año = df_games_csv[df_games_csv["release_date"] == año]
