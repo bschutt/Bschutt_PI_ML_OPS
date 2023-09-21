@@ -6,6 +6,7 @@ app= FastAPI()
 
 df_games_csv= pd.read_csv("./Games_csv")
 df_reviews_final_csv= pd.read_csv("./Reviews_csv")
+df_items_final_csv= pd.read_csv("./Reviews_csv")
 
 #1
 @app.get('/user_data/{user_id}')
@@ -56,6 +57,38 @@ async def count_reviews(start_date: str, end_date: str):
 
     return num_users, percentage_recommendation
 
+
+#3
+@app.get("/genre/{género}")
+async def genre(género):
+    df_genre = df_games_csv[df_games_csv['genres'] == género]
+    
+    if df_genre.empty:
+        return None  # Devuelve None si no se encontraron coincidencias
+    
+    df_merged = df_genre.merge(df_items_final_csv, left_index=True, right_index=True)
+    df_sorted = df_merged.sort_values(by='playtime_forever', ascending=False)
+    
+    puesto = df_sorted.index.tolist().index(0) + 1
+    
+    return puesto
+
+
+#4
+@app.get("/userforgenre/{género}")
+async def userforgenre(género: str):
+    # Filtra las reseñas por genre
+    reviews_por_género = df_games_csv[df_games_csv['genres'] == género]
+    # Se agrupa por los usuarios y las horas jugadas
+    horas_por_usuario = reviews_por_género.groupby('user_id.1')['horas_jugadas'].sum().reset_index()
+    # Obtiene los 5 usuarios con más horas de juego
+    top_usuarios = horas_por_usuario.nlargest(5, 'horas_jugadas')
+    # Obtiene la URL y user_id de los 5 usuarios
+    top_usuarios_info = top_usuarios.merge(df_reviews_final_csv[['user_id.1', 'user_url']], on='user_id.1')
+
+    return top_usuarios_info[['user_url', 'user_id.1']]
+
+
 #6
 @app.get("/sentiment_analysis/{año}")
 async def sentiment_analysis(año: int):
@@ -80,7 +113,6 @@ async def sentiment_analysis(año: int):
     return conteo_sentimientos
 
 
-
 # Modelo de recomendación
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -89,39 +121,44 @@ from sklearn.metrics.pairwise import cosine_similarity
 async def recomendacion_juego(product_id:int):
     try: 
         # Obtiene el juego de referencia
-        target_game= df_games_csv[df_games_csv["id"]== product_id]
+        target_game = df_games_csv[df_games_csv["id"] == product_id]
         if target_game.empty:
-            return{"message: No se encontró el juego de referencia"}
+            return {"message": "No se encontró el juego de referencia"}
         # Combina las etiquetas tags y genres en una sola cadena de texto
-        target_game_tags_and_genres= " " .join(target_game["tags"].fillna(" ").astype(str) + " " + target_game["genres"].fillna(" ").astype(str))
-        
-        #Crea un vectorizador TF-IDF
-        tfidf_vectorizer =TfidfVectorizer()
-        
+        target_game_tags_and_genres = " ".join(target_game["tags"].fillna(" ").astype(str) + " " + target_game["genres"].fillna(" ").astype(str))
+
+        # Crea un vectorizador TF-IDF
+        tfidf_vectorizer = TfidfVectorizer()
+
         # Configura el tamaño del lote para la lectura del juego
-        chunk_size = 100 # Tamaño del lote
-        similarity_scores= None
-        
+        chunk_size = 100  # Tamaño del lote
+        similarity_scores = None
+
         # Procesa los juegos por lotes aplicando chunks
         for chunk in pd.read_csv("./Games_csv", chunksize=chunk_size):
             # Combina las etiquetas tags y genres en una sola cadena de texto
-            chunk_tags_and_genres= " " .join(chunk["tags"].fillna(" ").astype(str) + " " + chunk["genres"].fillna(" ").astype(str)) 
+            chunk_tags_and_genres = " ".join(chunk["tags"].fillna(" ").astype(str) + " " + chunk["genres"].fillna(" ").astype(str))
+            
             # Aplica el vectorizador TF-IDF al lote actual de juegos y al juego de referencia
             tfidf_matrix = tfidf_vectorizer.fit_transform([target_game_tags_and_genres, chunk_tags_and_genres])
+            
             # Calcula la similitud entre el juego de referencia y los juegos del lote actual
+            similarity_scores_batch = cosine_similarity(tfidf_matrix)
+
             if similarity_scores is None:
-                similarity_scores = cosine_similarity(tfidf_matrix)
+                similarity_scores = similarity_scores_batch
             else:
-                similarity_scores = cosine_similarity(tfidf_matrix, X=similarity_scores)
+                similarity_scores = np.concatenate((similarity_scores, similarity_scores_batch), axis=1)
+                
         if similarity_scores is not None:
             # Obtiene los índices de los juegos similares 
             similar_games_indices = similarity_scores[0].argsort()[::-1]
             # Recomienda los juegos más similares 
             num_recomendation = 5
-            recomended_games = df_games_csv[similar_games_indices[1:num_recomendation + 1]]
-            # Devueve la lista con los juegos recomendados 
-            return recomended_games[["app_name", "tags","genres"]].to_dict(orient="records" )
-        
-        return {"message":" No se encontraron juegos similares"}
+            recommended_games = df_games_csv.iloc[similar_games_indices[1:num_recomendation + 1]]
+            # Devuelve la lista con los juegos recomendados 
+            return recommended_games[["app_name", "tags", "genres"]].to_dict(orient="records")
+
+        return {"message": "No se encontraron juegos similares"}
     except Exception as e:
-        return {"Message": f"Error: {str(e)}"}   
+        return {"Message": f"Error: {str(e)}"}
