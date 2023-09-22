@@ -28,7 +28,7 @@
 
 **INTRODUCCIÓN AL PROYECTO:**
 
- En este proyecto les traigo como hacer un trabajo situándome en el rol de un Data Sciencist :smile:, poniendo  foco central el proceso de ETL, el cual consiste en extraer, transformar y cargar datos. Este tipo de procesos se utiliza con la finalidad de para reunir información de diversos tipos de fuentes.
+ En este proyecto les traigo como hacer un trabajo situándome en el rol de un Data Sciencist :sunglasses: , poniendo  foco central el proceso de ETL, el cual consiste en extraer, transformar y cargar datos. Este tipo de procesos se utiliza con la finalidad de para reunir información de diversos tipos de fuentes.
 
  Por último, creé una API, a través de FastAPI (un framework de alto rendimiento de Python) la cual me permitirá ingresar y realizar consultas en tiempo real, y también a través de esta interfaz hacer la consulta de  un  modelo capaz de recomendar juegos similares a aquellos que se hayan seleccionado.
 
@@ -114,9 +114,9 @@ _LINK DEL VIDEO EXPLICATIVO:_
 
 
 _HERRAMIENTAS Y LENGUAJES UTILIZADOS:_
-* Python
-* Pandas
-* Render
-* FastAPI
+:snake: Python
+:panda_face: Pandas 	
+:sparkles: Render
+:zap: FastAPI
 
 
