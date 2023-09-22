@@ -103,13 +103,13 @@ A continuación se encuentra:
 
 
 
-:black_square: LINK DEPLOYMENT:
+:small_square: LINK DEPLOYMENT:
 
 
 :link: https://pi-deploy-on34.onrender.com/docs#/
 
 
-:black_square: LINK DEL VIDEO EXPLICATIVO:
+:small_square: LINK DEL VIDEO EXPLICATIVO:
 
 :link:
 
