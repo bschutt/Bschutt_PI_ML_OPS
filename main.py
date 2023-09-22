@@ -116,6 +116,7 @@ async def sentiment_analysis(año: int):
 # Modelo de recomendación
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 @app.get("/recomendacion_juego/{product_id}")
 async def recomendacion_juego(product_id:int):
