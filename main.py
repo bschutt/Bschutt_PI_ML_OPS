@@ -158,7 +158,7 @@ async def recomendacion_juego(product_id:int):
             num_recomendation = 5
             recommended_games = df_games_csv.iloc[similar_games_indices[1:num_recomendation + 1]]
             # Devuelve la lista con los juegos recomendados 
-            return recommended_games[["app_name", "tags", "genres","id"]].to_dict(orient="records")
+            return recommended_games[["app_name", "id"]].to_dict(orient="records")
 
         return {"message": "No se encontraron juegos similares"}
     except Exception as e:
