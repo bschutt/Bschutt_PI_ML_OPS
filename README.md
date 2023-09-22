@@ -103,15 +103,15 @@ A continuación se encuentra:
 
 
 
-:small_orange_diamond:_LINK DEPLOYMENT:_
+:black_square:_LINK DEPLOYMENT:_
 
 
+:link:
 
 
+:black_square:_LINK DEL VIDEO EXPLICATIVO:_
 
-:small_orange_diamond:_LINK DEL VIDEO EXPLICATIVO:_
-
-
+:link:
 
 _HERRAMIENTAS Y LENGUAJES UTILIZADOS:_
 * :snake: Python

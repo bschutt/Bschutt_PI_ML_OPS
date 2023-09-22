@@ -91,10 +91,27 @@ async def userforgenre(género: str):
 
     return top_usuarios_info[['user_url', 'user_id.1']]
 
-#5
-@app.get("/developers/{desarrollador}")
-async def developer( desarrollador : str):
 
+#5
+@app.get("/developer/{desarrollador}")
+async def developer(desarrollador, str):
+    # Filtrar el DataFrame por el desarrollador específico
+    developer_df = df_games_csv[df_games_csv['developer'] == desarrollador].copy()  # Agregamos .copy() para evitar el error
+
+    # Asegurarse de que release_date sea de tipo datetime
+    developer_df['release_date'] = pd.to_datetime(developer_df['release_date'])
+    
+    # Crea una nueva columna release_year que contiene el año de lanzamiento de cada juego
+    developer_df['release_year'] = developer_df['release_date'].dt.to_period('Y')
+
+    # Agrupar por año y contar la cantidad de juegos y el porcentaje de contenido Free
+    grouped = developer_df.groupby(developer_df['release_year'].dt.year)['developer'].count()
+    free_percentage = developer_df.groupby(developer_df['release_year'].dt.year)['price'].apply(lambda x: (x == 0).mean() * 100)
+
+    # Combinar la información en un DataFrame
+    developer_info_df = pd.DataFrame({'Año': grouped, 'Porcentaje de Contenido Free': free_percentage})
+
+    return developer_info_df
 
 
 
