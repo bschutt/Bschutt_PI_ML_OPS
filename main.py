@@ -91,10 +91,17 @@ async def userforgenre(género: str):
 
     return top_usuarios_info[['user_url', 'user_id.1']]
 
+#5
+@app.get("/developers/{desarrollador}")
+async def developer( desarrollador : str):
+
+
+
+
 
 #6
-@app.get("/sentiment_analysis/{año}")
-async def sentiment_analysis(año: int):
+ @app.get("/sentiment_analysis/{año}")
+ async def sentiment_analysis(año: int):
     # Filtramos los DataFrames por año
     juegos_año = df_games_csv[df_games_csv["release_date"] == año]
     reviews_año = df_reviews_final_csv[df_reviews_final_csv["sentiment_analysis"] == año]
