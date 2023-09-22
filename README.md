@@ -103,20 +103,20 @@ A continuación se encuentra:
 
 
 
-_LINK DEPLOYMENT:_
+:small_orange_diamond:_LINK DEPLOYMENT:_
 
 
 
 
 
-_LINK DEL VIDEO EXPLICATIVO:_
+:small_orange_diamond:_LINK DEL VIDEO EXPLICATIVO:_
 
 
 
 _HERRAMIENTAS Y LENGUAJES UTILIZADOS:_
-:snake: Python
-:panda_face: Pandas 	
-:sparkles: Render
-:zap: FastAPI
+* :snake: Python
+* :panda_face: Pandas 	
+* :sparkles: Render
+* :zap: FastAPI
 
 
