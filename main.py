@@ -55,7 +55,10 @@ async def count_reviews(start_date: str, end_date: str):
     else:
         percentage_recommendation = 0
 
-    return num_users, percentage_recommendation
+    return {
+        "Número de usuarios": num_users, 
+        "Porcentaje de recomendación": percentage_recommendation
+        }
 
 
 #3
