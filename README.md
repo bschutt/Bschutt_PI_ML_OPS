@@ -105,15 +105,16 @@ A continuación se encuentra:
 
 
 
-:small_black_diamond: LINK DEPLOYMENT:
+* _LINK DEPLOYMENT:_
 
 
 :link: https://pi-deploy-on34.onrender.com/docs#/
 
 
-:small_black_diamond: LINK DEL VIDEO EXPLICATIVO:
+* _LINK DEL VIDEO EXPLICATIVO:_
 
 :link:
+
 
 _HERRAMIENTAS Y LENGUAJES UTILIZADOS:_
 * :snake: Python
