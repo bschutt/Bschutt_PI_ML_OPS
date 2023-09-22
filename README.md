@@ -103,13 +103,13 @@ A continuación se encuentra:
 
 
 
-:black_square:_LINK DEPLOYMENT:_
+:black_square: _LINK DEPLOYMENT:_
 
 
 :link:
 
 
-:black_square:_LINK DEL VIDEO EXPLICATIVO:_
+:black_square: _LINK DEL VIDEO EXPLICATIVO:_
 
 :link:
 

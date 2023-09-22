@@ -94,7 +94,7 @@ async def userforgenre(género: str):
 
 #5
 @app.get("/developer/{desarrollador}")
-async def developer(desarrollador, str):
+async def developer(desarrollador: str):
     # Filtrar el DataFrame por el desarrollador específico
     developer_df = df_games_csv[df_games_csv['developer'] == desarrollador].copy()  # Agregamos .copy() para evitar el error
 
