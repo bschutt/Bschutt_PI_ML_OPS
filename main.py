@@ -114,7 +114,6 @@ async def developer(desarrollador: str):
     return developer_info_df
 
 
-
 #6
 @app.get("/sentiment_analysis/{año}")
 async def sentiment_analysis(año: int):
@@ -137,6 +136,7 @@ async def sentiment_analysis(año: int):
             conteo_sentimientos[sentimiento] += count
 
     return conteo_sentimientos
+
 
 
 # Modelo de recomendación

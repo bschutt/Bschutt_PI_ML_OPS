@@ -45,7 +45,7 @@ En este proyecto en particular los archivos a extraer estaban en formato GZIP y 
 
 2- Analisis exploratorios de los datos _(EDA)_, esto realizó con la finalidad de explorar y visualizar los datos para tener una mejor percepción/entendimiento de la información que contiene el dataset, con el cual trabajaremos posteriormente. Este análisis exploratorio se llevó a cabo en el mismo archivo que el ETL.
 
-3- En el archivo _main.py_ se desarrolló una interfaz utilizando la biblioteca FastAPI.
+3- En el archivo _main.py_ se desarrolló una interfaz utilizando la biblioteca FastAPI. Para ello colocamos decoradores en las funciones creadas.
 
 
 4- _Desarrollo del Modelo de Machine Learning:_ Para el sistema de recomendación se implementó un modelo de Machine Learning utilizando el algoritmo de similitud de cosenos. Este modelo fue preparado luego de haber realizado el ETL, dejando la información lista para consumir. Una vez completa el entrenamiento utilizé la plataforma _RENDER_ para realizar el despliegue de la aplicación.
@@ -83,6 +83,8 @@ Esta funcion devuelve el top 5 de los usuarios que mas jugaron
 
 * _def developer( desarrollador : str ):_
 
+Ésta función recibe como parámetro un id_usuario developer y devuelve la cantidad de contenido free por año.
+
 
 * _def sentiment_analysis( año : int ):_
 
@@ -103,13 +105,13 @@ A continuación se encuentra:
 
 
 
-:small_square: LINK DEPLOYMENT:
+:small_black_diamond: LINK DEPLOYMENT:
 
 
 :link: https://pi-deploy-on34.onrender.com/docs#/
 
 
-:small_square: LINK DEL VIDEO EXPLICATIVO:
+:small_black_diamond: LINK DEL VIDEO EXPLICATIVO:
 
 :link:
 
