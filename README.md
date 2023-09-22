@@ -113,7 +113,7 @@ A continuación se encuentra:
 
 * _LINK DEL VIDEO EXPLICATIVO:_
 
-:link:
+:link: https://youtu.be/YE5zfG7zd5I
 
 
 _HERRAMIENTAS Y LENGUAJES UTILIZADOS:_
