@@ -6,8 +6,8 @@
 
 
 
-# PROYECTO INDIVIDUAL N° 1 - MLOps
 
+<h1 align="center"> PROYECTO INDIVIDUAL N° 1 - MLOps </h1>
 
 
 
@@ -28,7 +28,7 @@
 
 **INTRODUCCIÓN AL PROYECTO:**
 
- En este proyecto les traigo como hacer un trabajo situándome en el rol de un Data Sciencist, poniendo  foco central el proceso de ETL, el cual consiste en extraer, transformar y cargar datos. Este tipo de procesos se utiliza con la finalidad de para reunir información de diversos tipos de fuentes.
+ En este proyecto les traigo como hacer un trabajo situándome en el rol de un Data Sciencist :smile:, poniendo  foco central el proceso de ETL, el cual consiste en extraer, transformar y cargar datos. Este tipo de procesos se utiliza con la finalidad de para reunir información de diversos tipos de fuentes.
 
  Por último, creé una API, a través de FastAPI (un framework de alto rendimiento de Python) la cual me permitirá ingresar y realizar consultas en tiempo real, y también a través de esta interfaz hacer la consulta de  un  modelo capaz de recomendar juegos similares a aquellos que se hayan seleccionado.
 
@@ -89,6 +89,17 @@ Esta funcion devuelve el top 5 de los usuarios que mas jugaron
  Esta función nos devuelve según el año de lanzamiento, un registro de las reseñas de los usuarios.
 
 
+Y por último, la función  que corresponde al modelo de aprendizaje automático
+
+
+* _def recomendacion_juego( id de producto ): _
+
+ Si ingresamos  el id de producto, debemos recibir una lista con 5 juegos recomendados similares al ingresado.
+
+
+
+
+A continuación se encuentra:
 
 
 
@@ -102,5 +113,10 @@ _LINK DEL VIDEO EXPLICATIVO:_
 
 
 
+_HERRAMIENTAS Y LENGUAJES UTILIZADOS:_
+* Python
+* Pandas
+* Render
+* FastAPI
 
 
